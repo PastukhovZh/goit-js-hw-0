@@ -45,7 +45,7 @@ const options = {
       clearInterval(timerId);
       return;
     }
-      startBtn.disabled = false;
+    startBtn.disabled = false;
 
 
     const showTimer = () => {
@@ -55,33 +55,35 @@ const options = {
 
       if (!selectedData) return;
 
-      const diff = selectedData - now;
-      const { days, hours, minutes, seconds } = convertMs(diff);
-      daysValue.textContent = addLeadingZero(days);
-      hoursValue.textContent = addLeadingZero(hours);
-      minutesValue.textContent = addLeadingZero(minutes);
-      secondsValue.textContent = addLeadingZero(seconds);
+        const diff = selectedData - now;
+        const { days, hours, minutes, seconds } = convertMs(diff);
+        daysValue.textContent = addLeadingZero(days);
+        hoursValue.textContent = addLeadingZero(hours);
+        minutesValue.textContent = addLeadingZero(minutes);
+        secondsValue.textContent = addLeadingZero(seconds);
 
-      if (
-        daysValue.textContent === '0' &&
-        hoursValue.textContent === '00' &&
-        minutesValue.textContent === '00' &&
-        secondsValue.textContent === '00'
-      ) {
+        if (
+          daysValue.textContent === '00' &&
+          hoursValue.textContent === '00' &&
+          minutesValue.textContent === '00' &&
+          secondsValue.textContent === '00'
+        ) {
         clearInterval(timerId);
-      }
-    };
+      
+        }
+      };
 
-    const onClick = () => {
-      if (timerId) {
-        clearInterval(timerId);
-      }
-      showTimer();
-      timerId = setInterval(showTimer, 1000);
-    };
+      const onClick = () => {
+        if (timerId) {
+          clearInterval(timerId);
+        }
+        showTimer();
+        timerId = setInterval(showTimer, 1000);
+        clearInterval()
+      };
 
-    startBtn.addEventListener('click', onClick);
-  },
+      startBtn.addEventListener('click', onClick);
+    }
 };
 
 flatpickr('#datetime-picker', { ...options });
