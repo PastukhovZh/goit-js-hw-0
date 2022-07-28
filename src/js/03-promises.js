@@ -35,8 +35,14 @@ function onSubmit(e) {
   let delayValue = Number(delay.value);
   let stepValue = Number(step.value);
   let amountValue = Number(amount.value);
+if ((delayValue || stepValue || amountValue) <= 0) {
+  e.currentTarget.reset();
+  
+  return Notify.warning('Не слоивли на минусовых значениях :p')
+    }
+    for (let i = 1; i <= amountValue; i++) {
 
-  for (let i = 1; i <= amountValue; i++) {
+    
 createPromise(i, delayValue)
   .then(({ position, delay }) => {
     Notify.success(`✅ Fulfilled promise ${position} in ${delay}ms`);
@@ -46,7 +52,7 @@ createPromise(i, delayValue)
   });    
     delayValue += stepValue
 
+    
+    }
     e.currentTarget.reset();
-
-  }
 }
