@@ -38,7 +38,7 @@ function onSubmit(e) {
 if ((delayValue || stepValue || amountValue) <= 0) {
   e.currentTarget.reset();
   
-  return Notify.warning('Не слоивли на минусовых значениях :p')
+  return Notify.warning('Не поймали на минусовых значениях :p')
     }
     for (let i = 1; i <= amountValue; i++) {
 
